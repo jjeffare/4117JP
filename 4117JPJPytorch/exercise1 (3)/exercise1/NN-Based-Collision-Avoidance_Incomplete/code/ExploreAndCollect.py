@@ -30,6 +30,10 @@ def PointsFromAngle(angle):
 
 
 class BotEnv:
+    pass
+
+
+class BotEnv:
     def __init__(self):
         ## Initialize Required Variables
         self.crashed = False
@@ -243,7 +247,148 @@ class BotEnv:
                     if ob.collidepoint((PixelInGame[0], PixelInGame[1])):
                         return distance
         ## Draw The Sensor
-        pygame.draw.line(screen, (30, 144, 255), SensorStartInGame, SensorEndInGame)
+        [pygame.draw.line(screen, (30, 144, 255), SensorStartInGame)]
+        if __name__ == "__main__":
+    env = BotEnv()
+    random.seed(10)
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        env._step(3)
+        for i in range(200):
+            if random.random() > 0.5:
+                TakeLeftOrRightTurn(env)
+            else:
+                GoStraight(env)
+            np.savetxt("./SensorData/SensorData.txt", SummarySensorData)
+
+        pygame.display.flip()
+        clock.tick(ClockTickValue)
+
+    pygame.quit()if __name__ == "__main__":
+    env = BotEnv()
+    random.seed(10)
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        env._step(3)
+        for i in range(200):
+            if random.random() > 0.5:
+                TakeLeftOrRightTurn(env)
+            else:
+                GoStraight(env)
+            np.savetxt("./SensorData/SensorData.txt", SummarySensorData)
+
+        pygame.display.flip()
+        clock.tick(ClockTickValue)
+
+    pygame.quit()def SensorReading(self, sensor, x, y, angle):
+    ### Returns The Reading For A Single Sensor ###
+    distance = 0
+    (x1, y1) = sensor[0][0], sensor[0][1]
+    (x2, y2) = sensor[1][0], sensor[1][1]
+    SensorAngle = sensor[2]
+    PixelsInPath = []
+    NumberOfPoints = 100
+    ## Generate Sensor Points
+    for k in range(NumberOfPoints):
+        x_new = x1 + (x2 - x1) * (k / NumberOfPoints)
+        y_new = y1 + (y2 - y1) * (k / NumberOfPoints)
+        PixelsInPath.append((x_new, y_new))
+    for pixel in PixelsInPath:
+        distance += 1
+        PixelInGame = self.Rotate((x, y), (pixel[0], pixel[1]), angle + SensorAngle)
+        SensorStartInGame = self.Rotate((x, y), (x1, PixelsInPath[-1][1]), angle + SensorAngle)
+        SensorEndInGame = self.Rotate((x, y), PixelsInPath[-1], angle + SensorAngle)
+        if PixelInGame[0] <= 0 or PixelInGame[1] <= 0 or PixelInGame[0] >= width or PixelInGame[1] >= height:
+            return distance
+        else:
+            for ob in self.WallRects:
+                if ob.collidepoint((PixelInGame[0], PixelInGame[1])):
+                    return distance
+    ## Draw The Sensor
+    pygame.draw.line(screen, (30, 144, 255), SensorStartInGame, SensorEndInGame)
+    return distancepython
+def SensorReading(self, sensor, x, y, angle):
+    ### Returns The Reading For A Single Sensor ###
+    distance = 0
+    (x1, y1) = sensor[0][0], sensor[0][1]
+    (x2, y2) = sensor[1][0], sensor[1][1]
+    SensorAngle = sensor[2]
+    PixelsInPath = []
+    NumberOfPoints = 100
+    ## Generate Sensor Points
+    for k in range(NumberOfPoints):
+        x_new = x1 + (x2 - x1) * (k / NumberOfPoints)
+        y_new = y1 + (y2 - y1) * (k / NumberOfPoints)
+        PixelsInPath.append((x_new, y_new))
+    for pixel in PixelsInPath:
+        distance += 1
+        PixelInGame = self.Rotate((x, y), (pixel[0], pixel[1]), angle + SensorAngle)
+        SensorStartInGame = self.Rotate((x, y), (x1, PixelsInPath[-1][1]), angle + SensorAngle)
+        SensorEndInGame = self.Rotate((x, y), PixelsInPath[-1], angle + SensorAngle)
+        if PixelInGame[0] <= 0 or PixelInGame[1] <= 0 or PixelInGame[0] >= width or PixelInGame[1] >= height:
+            return distance
+        else:
+            for ob in self.WallRects:
+                if ob.collidepoint((PixelInGame[0], PixelInGame[1])):
+                    return distance
+    ## Draw The Sensor
+    pygame.draw.line(screen, (30, 144, 255), SensorStartInGame, SensorEndInGame)
+    return distancepython
+if __name__ == "__main__":
+    env = BotEnv()
+    random.seed(10)
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        env._step(3)
+        for i in range(200):
+            if random.random() > 0.5:
+                TakeLeftOrRightTurn(env)
+            else:
+                GoStraight(env)
+            np.savetxt("./SensorData/SensorData.txt", SummarySensorData)
+
+        pygame.display.flip()
+        clock.tick(ClockTickValue)
+
+    pygame.quit()def SensorReading(self, sensor, x, y, angle):
+    ### Returns The Reading For A Single Sensor ###
+    distance = 0
+    (x1, y1) = sensor[0][0], sensor[0][1]
+    (x2, y2) = sensor[1][0], sensor[1][1]
+    SensorAngle = sensor[2]
+    PixelsInPath = []
+    NumberOfPoints = 100
+    ## Generate Sensor Points
+    for k in range(NumberOfPoints):
+        x_new = x1 + (x2 - x1) * (k / NumberOfPoints)
+        y_new = y1 + (y2 - y1) * (k / NumberOfPoints)
+        PixelsInPath.append((x_new, y_new))
+    for pixel in PixelsInPath:
+        distance += 1
+        PixelInGame = self.Rotate((x, y), (pixel[0], pixel[1]), angle + SensorAngle)
+        SensorStartInGame = self.Rotate((x, y), (x1, PixelsInPath[-1][1]), angle + SensorAngle)
+        SensorEndInGame = self.Rotate((x, y), PixelsInPath[-1], angle + SensorAngle)
+        if PixelInGame[0] <= 0 or PixelInGame[1] <= 0 or PixelInGame[0] >= width or PixelInGame[1] >= height:
+            return distance
+        else:
+            for ob in self.WallRects:
+                if ob.collidepoint((PixelInGame[0], PixelInGame[1])):
+                    return distance
+    ## Draw The Sensor
+    pygame.draw.line(screen, (30, 144, 255), SensorStartInGame, SensorEndInGame)
+    return distanceSensorEndInGame)
         return distance
 
     def Rotate(self, origin, point, angle):
